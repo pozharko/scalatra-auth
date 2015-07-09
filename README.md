@@ -8,7 +8,6 @@ Corresponds to the guide at [http://scalatra.org/2.4/guides/http/authentication.
 ```sh
 $ sbt
 > container:start
-> browse
 ```
 
 Go to http://localhost:8080

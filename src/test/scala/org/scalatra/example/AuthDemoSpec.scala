@@ -9,7 +9,7 @@ class AuthDemoSpec extends ScalatraSpec {
       "should return status 401" ! root401 ^
       end
 
-  addServlet(classOf[AuthDemo], "/*")
+  addServlet(classOf[UserController], "/*")
 
   def root401 = get("/") {
     status must_== 401

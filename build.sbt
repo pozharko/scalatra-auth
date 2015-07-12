@@ -13,6 +13,7 @@ lazy val root = (project in file(".")).settings(
     "org.scalatra" %% "scalatra" % scalatraVersion,
     "org.scalatra" %% "scalatra-json" % scalatraVersion,
     "org.scalatra" %% "scalatra-specs2" % scalatraVersion % "test",
-    "org.json4s" %% "json4s-jackson" % "3.3.0.RC2"
+    "org.json4s" %% "json4s-jackson" % "3.3.0.RC2",
+    "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided"
   )
 ).settings(jetty(): _*)

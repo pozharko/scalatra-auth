@@ -17,7 +17,6 @@ class UserController extends ScalatraServlet with AuthenticationSupport with Jac
 
   get("/") {
     DB.getAllUsers
-    halt(400)
   }
 
   get("/:id") {

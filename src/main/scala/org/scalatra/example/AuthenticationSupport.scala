@@ -3,7 +3,7 @@ package org.scalatra.example
 import org.scalatra.auth.strategy.{BasicAuthStrategy, BasicAuthSupport}
 import org.scalatra.auth.{ScentrySupport, ScentryConfig}
 import org.scalatra.example.models.User
-import org.scalatra.{ScalatraBase}
+import org.scalatra.ScalatraBase
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 
 
@@ -22,7 +22,6 @@ trait AuthenticationSupport extends ScentrySupport[User] with BasicAuthSupport[U
   val realm = "Scalatra Basic Auth Example"
 
   protected def fromSession = {
-    //???????????
     case id: String => DB.getUserById(id.toInt).get
   }
 

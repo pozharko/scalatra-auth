@@ -1,7 +1,8 @@
-# Authentication Demo #
-
-Corresponds to the guide at [http://scalatra.org/2.4/guides/http/authentication.html](http://scalatra.org/2.4/guides/http/authentication.html)
-
+This project is for experiments with Scalatra framework
+Branches:
+- *master* - experimental branch
+- *habr* - code with habrahabr tutorial
+- *website-example* - minimal example of authentification
 
 ## Build & Run ##
 

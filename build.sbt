@@ -14,6 +14,9 @@ lazy val root = (project in file(".")).settings(
     "org.scalatra" %% "scalatra-json" % scalatraVersion,
     "org.scalatra" %% "scalatra-specs2" % scalatraVersion % "test",
     "org.json4s" %% "json4s-jackson" % "3.+",
+    "com.typesafe.slick" %% "slick" % "3.+",
+    "com.h2database" % "h2" % "1.+",
+    "com.typesafe.akka" %% "akka-actor" % "2.+",
     "javax.servlet" % "javax.servlet-api" % "3.+" % "provided"
   )
 ).settings(jetty(): _*)

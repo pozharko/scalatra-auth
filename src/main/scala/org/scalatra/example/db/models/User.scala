@@ -1,28 +1,20 @@
 package org.scalatra.example.db.models
 
-import org.scalatra.example.db.{DBSupport, DB}
-
-import scala.concurrent.Future
-import slick.driver.H2Driver.api._
+import scala.concurrent.{Await, Future}
 
 /**
  * @author Dmitry Meshkov
  * @since 11.07.2015
  */
-case class User(id: Int, login: String, password: String)
+case class User(id: Option[Int], login: String, password: String) {
 
+  def this(id: Int, login: String, password: String) = this(Some(id), login, password)
 
-object User extends DBSupport {
-  def getAll: Future[Seq[User]] = {
-    run(users.result)
-  }
+  require(login.nonEmpty, "Login should not be empty")
+  require(password.length > 4, "Password length should be > 4")
 
-  def find(id: Int): Future[Option[User]] = {
-    run(users.filter(_.id === id).result.map(_.headOption))
-  }
+}
 
-  def delete(id: Int): Future[Int] = {
-    run(users.filter(_.id === id).delete)
-  }
-
+case object User extends ((Option[Int], String, String) => User) {
+  def apply(id: Int, login: String, password: String) = new User(Some(id), login, password)
 }

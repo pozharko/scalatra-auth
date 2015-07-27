@@ -3,10 +3,15 @@ package org.scalatra.example
 import org.json4s.{DefaultFormats, Formats}
 import org.scalatra._
 import org.scalatra.example.db.models.User
+import org.scalatra.example.db.tables.Users
 import org.scalatra.json.JacksonJsonSupport
 
 import scala.concurrent.ExecutionContext
 
+/**
+ * @author Dmitry Meshkov
+ * @since 11.07.2015
+ */
 class UserController extends ScalatraServlet with JacksonJsonSupport with FutureSupport {
 
   protected implicit def executor: ExecutionContext = ExecutionContext.Implicits.global
@@ -18,28 +23,31 @@ class UserController extends ScalatraServlet with JacksonJsonSupport with Future
   }
 
   get("/") {
-    User.getAll
+    Users.getAll
   }
 
   get("/:id") {
-    val id = getId
-    User.find(id)
+    Users.find(id)
   }
 
+  //TODO catch require errors (password/login length)
+  //TODO correct response body (put/post/delete)
   put("/") {
-    throw new NotImplementedError()
+    val user = User(None, params("login"),  params("password"))
+    Users.insert(user)
   }
 
   post("/:id") {
-    throw new NotImplementedError()
+    val user = User(id, params("login"),  params("password"))
+    Users.update(user)
   }
 
   delete("/:id") {
-    val id = getId
-    User.delete(id).map(_.toString)
+    Users.delete(id)
+    "some response"
   }
 
-  private def getId: Int = {
+  private def id: Int = {
     //TODO catch errors
     params("id").toInt
   }
